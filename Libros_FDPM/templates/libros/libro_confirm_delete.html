@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-danger text-white">
+            <h1 class="card-title">Eliminar Libro</h1>
+        </div>
+        <div class="card-body">
+            <p class="lead">
+                ¿Está seguro que desea eliminar el libro "{{ libro.titulo }}"?
+            </p>
+            <p>Esta acción no se puede deshacer.</p>
+            
+            <dl class="row">
+                <dt class="col-sm-3">Título</dt>
+                <dd class="col-sm-9">{{ libro.titulo }}</dd>
+
+                <dt class="col-sm-3">Autor</dt>
+                <dd class="col-sm-9">{{ libro.autor }}</dd>
+
+                <dt class="col-sm-3">ISBN</dt>
+                <dd class="col-sm-9">{{ libro.isbn }}</dd>
+            </dl>
+            
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Confirmar Eliminación
+                </button>
+                <a href="{% url 'libros:libro_list' %}" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Cancelar
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
